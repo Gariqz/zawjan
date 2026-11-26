@@ -1,0 +1,55 @@
+/**
+ * Laravel + Inertia entry (EXAMPLE — copy to resources/js/app.tsx in the Laravel app).
+ *
+ * Prerequisites (in the Laravel project):
+ *   composer require inertiajs/inertia-laravel
+ *   npm i @inertiajs/react laravel-vite-plugin
+ *   php artisan inertia:middleware   (register HandleInertiaRequests in the web middleware group)
+ *   resources/views/app.blade.php with @viteReactRefresh @vite('resources/js/app.tsx') @inertia
+ *
+ * Then:
+ *   1. Replace resources/js/routing/navigation.tsx with integration/inertia/navigation.inertia.tsx.example.
+ *   2. Implement the PROPOSED JSON endpoints in resources/js/services/http/endpoints.ts on the
+ *      Laravel side (web middleware + session guard, so the same cookie and XSRF-TOKEN apply), or
+ *      rename them there. The HTTP adapters are already written; no page changes are needed.
+ *   3. Return Inertia::render('<inertiaName>', ['id' => ...]) from controllers, using the names in
+ *      resources/js/app/screenRegistry.ts (e.g. 'Participant/Catalog', 'Moderator/ReportCase').
+ *      Page props only carry the route key; screens fetch their data through the services.
+ *   4. Chat stays "service unavailable" until a reviewed E2EE MessageCodec is passed in below.
+ *
+ * This entry never imports the mock adapters, the scenario panel or the screen index.
+ */
+import '@fontsource/plus-jakarta-sans/latin-400.css';
+import '@fontsource/plus-jakarta-sans/latin-500.css';
+import '@fontsource/plus-jakarta-sans/latin-600.css';
+import '@fontsource/plus-jakarta-sans/latin-700.css';
+import '@fontsource/playfair-display/latin-600.css';
+import './styles/app.css';
+import { createInertiaApp, router } from '@inertiajs/react';
+import { createRoot } from 'react-dom/client';
+import { AppProviders } from './app/App';
+import { INERTIA_PAGES } from './app/screenRegistry';
+import { createInertiaServices } from './services/inertia/adapters';
+
+// Every Inertia visit silently refreshes mounted queries (viewer included), so server-side state
+// changes such as an approval or a logout from another tab show up on the next navigation.
+const services = createInertiaServices({
+  events: { subscribe: (listener) => router.on('navigate', () => listener()) },
+});
+
+createInertiaApp({
+  title: (title) => (title ? `${title} — Zawjan` : 'Zawjan'),
+  resolve: (name) => {
+    const page = INERTIA_PAGES[name];
+    if (!page) throw new Error(`Unknown Inertia page "${name}". See resources/js/app/screenRegistry.ts.`);
+    return page;
+  },
+  setup({ el, App, props }) {
+    createRoot(el).render(
+      <AppProviders services={services}>
+        <App {...props} />
+      </AppProviders>,
+    );
+  },
+  progress: { color: '#137547' },
+});

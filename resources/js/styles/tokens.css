@@ -1,0 +1,40 @@
+/*
+ * Zawjan design tokens. Source-derived values (design.md §2.2) are marked [source];
+ * everything else is an implementation proposal pending design-team review.
+ * Channels are space-separated RGB so Tailwind can apply opacity.
+ */
+:root {
+  --brand-primary: 19 117 71;      /* #137547 [source] primary action, active nav */
+  --brand-forest: 9 55 33;         /* #093721 [source] headings, strong surfaces */
+  --brand-mint: 232 245 238;       /* #E8F5EE [source] quiet highlight */
+  --surface-white: 255 255 255;    /* #FFFFFF [source] */
+  --surface-canvas: 248 250 252;   /* #F8FAFC [source] app background */
+  --accent-amber: 217 119 6;       /* #D97706 [source] icons/borders only: 3.2:1 on white fails AA for text */
+  --accent-amber-text: 146 64 14;  /* #92400E amber text variant, 7.1:1 on white */
+  --accent-amber-soft: 254 243 199;
+
+  --ink: 15 23 42;                 /* #0F172A body text */
+  --ink-muted: 71 85 105;          /* #475569 secondary text, 7.6:1 */
+  --ink-subtle: 100 116 139;       /* #64748B captions, 4.8:1 */
+  --line: 226 232 240;
+  --line-strong: 203 213 225;
+  --danger: 185 28 28;
+  --danger-soft: 254 226 226;
+  --success: 21 128 61;
+  --success-soft: 220 252 231;
+  --info: 29 78 216;
+  --info-soft: 219 234 254;
+
+  --radius-card: 16px;
+  --radius-control: 12px;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 1px 3px rgb(15 23 42 / 0.04);
+  --shadow-raised: 0 10px 30px rgb(15 23 42 / 0.12);
+  --focus-ring: 0 0 0 3px rgb(19 117 71 / 0.4);
+
+  --space-page-x: 1rem;
+  --bottom-nav-height: 64px;
+}
+
+@media (min-width: 768px) {
+  :root { --space-page-x: 2rem; }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-labelledby="t">
+  <title id="t">Contoh dokumen identitas fiktif (bukan data sungguhan)</title>
+  <rect width="480" height="300" rx="18" fill="#EAF2FB" stroke="#9DB7D5" stroke-width="3"/>
+  <rect x="24" y="24" width="432" height="36" rx="6" fill="#C9DBEF"/>
+  <text x="240" y="48" font-family="sans-serif" font-size="16" fill="#2F4A66" text-anchor="middle" font-weight="700">CONTOH DOKUMEN — FIKTIF</text>
+  <rect x="32" y="84" width="120" height="150" rx="8" fill="#FFFFFF" stroke="#9DB7D5"/>
+  <circle cx="92" cy="140" r="28" fill="#C9DBEF"/>
+  <path d="M52 220c6-30 22-44 40-44s34 14 40 44z" fill="#C9DBEF"/>
+  <g fill="#9DB7D5"><rect x="176" y="92" width="240" height="12" rx="6"/><rect x="176" y="120" width="200" height="12" rx="6"/><rect x="176" y="148" width="220" height="12" rx="6"/><rect x="176" y="176" width="160" height="12" rx="6"/><rect x="176" y="204" width="190" height="12" rx="6"/></g>
+  <text x="240" y="276" font-family="monospace" font-size="14" fill="#2F4A66" text-anchor="middle">•••• •••• •••• 0000</text>
+</svg>

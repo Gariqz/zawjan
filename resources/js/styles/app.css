@@ -1,0 +1,63 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  /* Keeps focused/scrolled-to controls clear of the fixed mobile bottom navigation (WCAG 2.4.11). */
+  @media (max-width: 767px) {
+    html { scroll-padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 1rem); }
+  }
+  body {
+    @apply bg-surface-canvas font-sans text-ink antialiased;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  h1, h2, h3 { @apply text-brand-forest; }
+  :focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 6px; }
+  [hidden] { display: none !important; }
+}
+
+@layer components {
+  .page-x { padding-left: var(--space-page-x); padding-right: var(--space-page-x); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .with-bottom-nav { padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 1rem); }
+  .skeleton {
+    @apply rounded-md bg-line;
+    background-image: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.6), transparent);
+    background-size: 200% 100%;
+    animation: zj-shimmer 1.4s ease-in-out infinite;
+  }
+  .protected-media {
+    background:
+      repeating-linear-gradient(135deg, rgb(var(--brand-mint)) 0 10px, rgb(255 255 255) 10px 20px);
+  }
+}
+
+@keyframes zj-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .zj-mascot-pose { animation: zj-mascot-arrive 360ms cubic-bezier(.2, .75, .25, 1) both; }
+}
+
+@keyframes zj-mascot-arrive {
+  from { opacity: .65; transform: translateY(7px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Dev scenario pill floats bottom-right; keep page ends reachable beneath it. */
+html[data-dev-overlay='true'] body { padding-bottom: 5.5rem; }
+
+/* Design export captures disable motion so snapshots are deterministic. */
+/* Demo sign-in shortcuts are a presenter aid, not part of the designed login screen. */
+html[data-export='true'] [data-demo-logins] { display: none; }
+
+html[data-export='true'] *, html[data-export='true'] *::before, html[data-export='true'] *::after {
+  animation: none !important; transition: none !important; caret-color: transparent !important;
+}

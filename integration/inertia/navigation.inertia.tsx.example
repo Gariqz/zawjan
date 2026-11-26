@@ -1,0 +1,62 @@
+/**
+ * Inertia version of resources/js/routing/navigation.tsx (EXAMPLE).
+ * Same exported API, so no page or component changes are needed when swapping it in.
+ *
+ * Route params: Inertia pages receive data as props, not URL params. Controllers should pass the
+ * route key as a prop named `id` (e.g. Inertia::render('Participant/Chat', ['id' => $taaruf->public_id])).
+ * useRouteParam() reads it from usePage().props.
+ */
+import { forwardRef, type AnchorHTMLAttributes } from 'react';
+import { Link, router, usePage } from '@inertiajs/react';
+
+export interface AppLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+  to: string;
+  replace?: boolean;
+}
+
+export const AppLink = forwardRef<HTMLAnchorElement, AppLinkProps>(({ to, replace, ...p }, ref) => (
+  <Link ref={ref} href={to} replace={replace} {...p} />
+));
+AppLink.displayName = 'AppLink';
+
+export function useAppNavigate(): (to: string, opts?: { replace?: boolean }) => void {
+  return (to, opts) => router.visit(to, { replace: opts?.replace ?? false });
+}
+
+export function useRouteParam(name: string): string {
+  const props = usePage().props as Record<string, unknown>;
+  const v = props[name];
+  return typeof v === 'string' ? v : '';
+}
+
+export function useCurrentPath(): string {
+  return new URL(usePage().url, window.location.origin).pathname;
+}
+
+function currentParams(url: string) {
+  return new URL(url, window.location.origin).searchParams;
+}
+
+export function useQueryParam(name: string): [string | null, (v: string | null) => void] {
+  const { url } = usePage();
+  const sp = currentParams(url);
+  return [sp.get(name), (v) => {
+    const n = new URLSearchParams(sp);
+    if (v === null || v === '') n.delete(name); else n.set(name, v);
+    router.get(`${pathOf(url)}?${n.toString()}`, {}, { preserveState: true, replace: true });
+  }];
+}
+
+export function useQueryParams(): [Record<string, string>, (next: Record<string, string | undefined>) => void] {
+  const { url } = usePage();
+  const rec = Object.fromEntries(currentParams(url).entries());
+  return [rec, (next) => {
+    const n = new URLSearchParams();
+    for (const [k, v] of Object.entries(next)) if (v !== undefined && v !== '') n.set(k, v);
+    router.get(`${pathOf(url)}?${n.toString()}`, {}, { preserveState: true });
+  }];
+}
+
+function pathOf(url: string) {
+  return new URL(url, window.location.origin).pathname;
+}

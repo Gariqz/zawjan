@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 480" role="img" aria-labelledby="t">
+  <title id="t">Ilustrasi abstrak: dua jalur yang bertemu di bawah naungan lengkung</title>
+  <rect width="560" height="480" fill="#F3FAF6"/>
+  <circle cx="460" cy="90" r="120" fill="#DDF2E6"/>
+  <circle cx="80" cy="420" r="150" fill="#E9F6EE"/>
+  <path d="M120 400V230a160 160 0 0 1 320 0v170" fill="none" stroke="#137547" stroke-width="14" stroke-linecap="round"/>
+  <path d="M170 400V240a110 110 0 0 1 220 0v160" fill="#FFFFFF" stroke="#0E4D31" stroke-width="4"/>
+  <path d="M200 400c30-70 60-110 80-120" fill="none" stroke="#C98B2B" stroke-width="10" stroke-linecap="round"/>
+  <path d="M360 400c-30-70-60-110-80-120" fill="none" stroke="#137547" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="280" cy="270" r="14" fill="#C98B2B"/>
+  <g fill="#137547" opacity=".35">
+    <circle cx="230" cy="190" r="5"/><circle cx="330" cy="190" r="5"/><circle cx="280" cy="160" r="5"/>
+  </g>
+  <rect x="90" y="400" width="380" height="10" rx="5" fill="#0E4D31"/>
+</svg>

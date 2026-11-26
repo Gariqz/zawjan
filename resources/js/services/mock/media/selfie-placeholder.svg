@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="t">
+  <title id="t">Contoh swafoto fiktif (ilustrasi, bukan foto sungguhan)</title>
+  <rect width="480" height="360" rx="18" fill="#F1F4F2" stroke="#B7C4BC" stroke-width="3"/>
+  <ellipse cx="240" cy="160" rx="80" ry="100" fill="none" stroke="#137547" stroke-width="4" stroke-dasharray="10 8"/>
+  <circle cx="240" cy="150" r="52" fill="#D9C2A6"/>
+  <path d="M160 330c8-60 40-96 80-96s72 36 80 96z" fill="#8FA39A"/>
+  <text x="240" y="30" font-family="sans-serif" font-size="15" fill="#3D5248" text-anchor="middle" font-weight="700">SWAFOTO — ILUSTRASI FIKTIF</text>
+</svg>

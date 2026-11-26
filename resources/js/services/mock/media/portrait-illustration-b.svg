@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-labelledby="t">
+  <title id="t">Ilustrasi potret fiktif (bukan foto orang sungguhan)</title>
+  <rect width="400" height="500" fill="#FBF3E4"/>
+  <circle cx="200" cy="195" r="62" fill="#D9AE85"/>
+  <path d="M140 165c10-40 35-60 60-60s50 20 60 60c-20-10-40-14-60-14s-40 4-60 14z" fill="#3B2F25"/>
+  <path d="M90 500c0-90 50-160 110-160s110 70 110 160z" fill="#5C6B7A"/>
+  <text x="200" y="480" font-family="sans-serif" font-size="16" fill="#FFFFFF" text-anchor="middle">ILUSTRASI FIKTIF</text>
+</svg>
